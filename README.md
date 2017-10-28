@@ -1,7 +1,4 @@
-# fitbit
 [Fitbit](https://www.fitbit.com)'s interface only lets you export one month of data at time. This Python script exports all months.
-
-Python script that retrieves your Fitbit data
 
 You'll need:
 - [Selenium](http://selenium-python.readthedocs.io/) (`pip install selenium` should do it).
