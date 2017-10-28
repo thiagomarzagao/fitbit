@@ -7,7 +7,7 @@ EMAIL = 'the_email_on_your_fitbit_account'
 PASSWORD = 'the_password_of_your_fitbit_account'
 MONTHS_TO_RETRIEVE = 60 # the number of months you want to go back
 
-# start browser, log in, go to user data page
+# start browser, log into Fitbit
 browser = webdriver.Chrome('chromedriver')
 browser.get('https://www.fitbit.com/logout')
 action = action_chains.ActionChains(browser)
@@ -26,16 +26,15 @@ for i in range(MONTHS_TO_RETRIEVE):
     for e in range(i):
         browser.find_element_by_xpath('//*[@id="calendarFrom_t"]/thead/tr[1]/th/div/a[1]').click()
         time.sleep(1)
-    browser.find_element_by_link_text('1').click()
+    browser.find_element_by_link_text('1').click() # start on day 1
     browser.find_element_by_id('showCalendarTo').click()
-    for day in range(1, 32)[::-1]:
+    for day in range(1, 32)[::-1]: # find last day of the month
         try:
             element = browser.find_element_by_link_text(str(day))
             browser.execute_script('arguments[0].click();', element)
             break
         except:
             continue
-    initial = False
 
     # pick desired variables
     browser.find_element_by_xpath('//*[@id="dataExportForm"]/div[2]/div[2]/div[1]/div[3]/input').click()
